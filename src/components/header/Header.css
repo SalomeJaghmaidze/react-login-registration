@@ -1,0 +1,24 @@
+.Header {
+    height: 40px;
+    background-color: 5B8CF0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin-right: 15px;
+}
