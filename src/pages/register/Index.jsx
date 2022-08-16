@@ -14,15 +14,33 @@ function Register() {
   const [user, setUser] = useState([]);
 
   const onSubmit = (data) => {
-     setUser(prevUsers => {
-      return [...prevUsers, data] 
-  });
-  console.log(user);
+    // if(user.length === null) {
+    //   setUser(prevUsers => ({
+    //     ...prevUsers, 
+    //     data 
+    // }));
+    // } else if(user.length > 1) {
+    //     const items = JSON.parse(localStorage.getItem('user'));
+    //     console.log(items)
+    //     items.forEach(element => {
+    //       if(element.Email === data.Email) {
+    //         console.log("already registered")
+    //       } else {
+    //         setUser(prevUsers => ({
+    //           ...prevUsers, 
+    //           data 
+    //       }));
+    //       }
+    //     });
+    //   }
+    
+    setUser(prevUsers => {
+          return [...prevUsers, data] 
+      });
   }
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(user));
-    localStorage.clear()
   }, [user]);
 
   return (
@@ -74,4 +92,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Register
