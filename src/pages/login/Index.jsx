@@ -11,7 +11,6 @@ function Login() {
     handleSubmit,
   } = useForm();
   const [message, setMessage] = useState("");
-  const [authUser, setAuthUser] = useState([]);
   let navigate = useNavigate();
 
   function onSubmit(data, e) {
@@ -19,7 +18,7 @@ function Login() {
     const items = JSON.parse(localStorage.getItem("user"));
     items.forEach((user) => {
       if (user.Email === data.username && user.Password === data.password) {
-        setAuthUser(user);
+        localStorage.setItem("authUser", JSON.stringify(user));
         navigate("/authorized/");
       } else if (user.Email !== data.username) {
         setMessage("You are not registered");

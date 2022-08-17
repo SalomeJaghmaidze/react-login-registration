@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles.css";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
   const {
@@ -12,35 +13,31 @@ function Register() {
   } = useForm();
 
   const [user, setUser] = useState([]);
+  let navigate = useNavigate();
 
   const onSubmit = (data) => {
-    // if(user.length === null) {
-    //   setUser(prevUsers => ({
-    //     ...prevUsers, 
-    //     data 
-    // }));
-    // } else if(user.length > 1) {
-    //     const items = JSON.parse(localStorage.getItem('user'));
-    //     console.log(items)
-    //     items.forEach(element => {
-    //       if(element.Email === data.Email) {
-    //         console.log("already registered")
-    //       } else {
-    //         setUser(prevUsers => ({
-    //           ...prevUsers, 
-    //           data 
-    //       }));
-    //       }
-    //     });
-    //   }
-    
-    setUser(prevUsers => {
-          return [...prevUsers, data] 
+    if (user.length == 0) {
+      setUser((prevUsers) => [...prevUsers, data]);
+    } else {
+      const items = JSON.parse(localStorage.getItem("user"));
+      var exists = false;
+      items.forEach((element) => {
+        if (element.Email === data.Email) {
+          exists = true;
+          console.log("already registered");
+        }
       });
-  }
+      if (!exists) {
+        console.log("added")
+        setUser((prevUsers) => [...prevUsers, data]);
+      }
+    }
+
+  };
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
+    // navigate("/authorized/");
   }, [user]);
 
   return (
@@ -92,4 +89,4 @@ function Register() {
   );
 }
 
-export default Register
+export default Register;
