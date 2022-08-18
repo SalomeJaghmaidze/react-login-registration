@@ -30,6 +30,7 @@ function Register() {
       if (!exists) {
         console.log("added")
         setUser((prevUsers) => [...prevUsers, data]);
+        navigate("/");
       }
     }
 
@@ -37,7 +38,6 @@ function Register() {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-    // navigate("/authorized/");
   }, [user]);
 
   return (
